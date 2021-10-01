@@ -12,11 +12,11 @@ Regarding the codebase, the backend can be found in the [backend folder](https:/
 # Tools
 For the frontend, I used:
 * React
+* Typescript 
 * Redux - Made state management easy. Components that required data from specific features could be accessed globally because of the Redux store. This introduced stability and robustness in our application, as well as reduce the number of rerenders.
 * Redux TK - Helps reduce writing boilerplate code that Redux introduces.
 * Immutable.js - Combined with Redux to create our reducers.  Made sure data was immutable and only changed when needed.
 * Axios and fetchAPI - Needed for fetching and sending data to the backend.
-* Typescript 
 
 For the backend, I used:
 * FastAPI - Python based. Had full support for NoSql databases, fast, and easy to route together different APIs.
