@@ -5,6 +5,4 @@ export const generateInitialUser = (): User => ({
   userName: '',
   email: '',
   password: '',
-  phone: '',
-  company: '',
 });

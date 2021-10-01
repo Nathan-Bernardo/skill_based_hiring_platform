@@ -1,11 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import { FC, FormEvent } from 'react';
+import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { TextField } from '@material-ui/core';
 import { MoreVert, StarBorder } from '@material-ui/icons';
-import ChipInput from 'material-ui-chip-input';
 
 import {
   AddJobAction,
@@ -21,9 +20,7 @@ import { flexColumn, flexRow, spaceBetween, description as eDescription } from '
 import { Job } from '../types';
 import { favorite, jobPostingContainer, jobTitle, menu, titleRow } from '../styles/JobPosting';
 import { Button } from '../../Shared/components/Button';
-import { useForm } from '../../../hooks';
 import { generateJob } from '../../../helperFunctions';
-import { skillList } from '../../../constants/skills';
 
 interface JobModalProps {
   jobListId: string;
@@ -31,19 +28,13 @@ interface JobModalProps {
 }
 
 export const JobModal: FC<JobModalProps> = ({ jobListId, job }: { jobListId: string; job?: Job }): JSX.Element => {
-  const [currentJob, handleChange, resetForm, manualSet] = useForm(job || generateJob());
-  const {
-    company,
-    title,
-    salaryFrom,
-    salaryTo,
-    location,
-    description,
-    recruiterDetails,
-    requiredSkills,
-    preferredSkills,
-  } = currentJob;
+  const [currentJob, setCurrentJob] = useState(job || generateJob());
+  const { title, salaryFrom, salaryTo, location, description, recruiterDetails } = currentJob;
   const dispatch = useDispatch();
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setCurrentJob({ ...currentJob, [e.target.name]: e.target.name === 'salary' ? +e.target.value : e.target.value });
+  };
 
   const handleClose = (): void => {
     dispatch<SetModalState>({
@@ -71,7 +62,6 @@ export const JobModal: FC<JobModalProps> = ({ jobListId, job }: { jobListId: str
         job: generateJob(currentJob),
       });
     }
-    resetForm();
     handleClose();
   };
 
@@ -82,7 +72,6 @@ export const JobModal: FC<JobModalProps> = ({ jobListId, job }: { jobListId: str
         flexRow,
         spaceBetween,
         css`
-          align-items: flex-start;
           width: auto;
         `,
       ]}
@@ -113,28 +102,6 @@ export const JobModal: FC<JobModalProps> = ({ jobListId, job }: { jobListId: str
             onChange={handleChange}
           />
         </div>
-        <ChipInput
-          alwaysShowPlaceholder
-          allowDuplicates={false}
-          onBeforeAdd={(chip: string): boolean => !requiredSkills.includes(chip) && skillList.includes(chip)}
-          dataSource={skillList}
-          defaultValue={requiredSkills}
-          onChange={(chips: string[]): void => {
-            manualSet('requiredSkills', chips);
-          }}
-          label="Required Skills"
-        />
-        <ChipInput
-          alwaysShowPlaceholder
-          allowDuplicates={false}
-          onBeforeAdd={(chip: string): boolean => !preferredSkills.includes(chip) && skillList.includes(chip)}
-          dataSource={skillList}
-          defaultValue={preferredSkills}
-          onChange={(chips: string[]): void => {
-            manualSet('preferredSkills', chips);
-          }}
-          label="Preferred Skills"
-        />
         <TextField name="location" id="standard-basic" label="Location" value={location} onChange={handleChange} />
         <TextField
           name="description"
@@ -174,7 +141,6 @@ export const JobModal: FC<JobModalProps> = ({ jobListId, job }: { jobListId: str
             <MoreVert />
           </div>
         </div>
-        <div css={eDescription}>{company}</div>
         <div css={eDescription}>{location}</div>
         <div css={eDescription}>Posted: a few seconds ago</div>
         <div>Applicants: 0</div>

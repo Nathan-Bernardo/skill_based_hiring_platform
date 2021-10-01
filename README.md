@@ -44,23 +44,3 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-# Creating Backend with FastAPI and MongoDB
-## Install FastAPI
-[Source](https://github.com/tiangolo/fastapi)
-
-`pip install fastapi` <br>
-`pip install uvicorn[standard]` 
-
-Uvicon is an ASGIC server for production.
-
-## Setting up MongoDB
-
-### Create MongoDB Account 
-Go to this link [MongoDB](https://www.mongodb.com/). Then, click "Create a Cluster" under "Shared Clusters".
-
-### Creating Shared Cluster
-In "Shared Cluster," choose "AWS" as cloud provider and leave the the other default options alone.  Create a cluster name related to Listee, like "listee-demo". 
-
-### Connecting to Cluster with FastAPI
-When cluster is finished, you can connect your cluster to FastAPI.  

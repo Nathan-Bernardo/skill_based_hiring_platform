@@ -21,6 +21,8 @@ import { SetCurrentJobAction, SET_CURRENT_JOB } from '../actions/jobActions';
 import { HiringManagerModals } from './HiringManagerModals';
 
 const Dashboard = (): JSX.Element => {
+  initialize();
+
   const dispatch = useDispatch();
   const { user, hiringManagerDashboard } = useSelector((state: AppState) => state);
   const { jobs, jobLists, modals } = hiringManagerDashboard;
@@ -34,8 +36,7 @@ const Dashboard = (): JSX.Element => {
     currentJobListId !== ''
       ? populateJobs(currentJobList, byJobListsId, userId).filter(({ jobId }) => byJobsId[jobId].favorited)
       : [];
-
-  initialize(dispatch);
+  console.log(byId);
 
   const toggleJobListModal = (): void => {
     dispatch<SetModalState>({

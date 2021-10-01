@@ -8,8 +8,6 @@ export const dummyUser: User = {
   userName: 'Test',
   email: 'test@listee.net',
   password: 'Test123#',
-  company: 'Listee',
-  phone: '4154563431',
 };
 
 const topJob: Job = {
@@ -81,8 +79,8 @@ const reactJob1: Job = {
   favorited: true,
   salaryFrom: 135000,
   location: 'Remote',
-  requiredSkills: ['React', 'CSS', 'HTML'],
-  preferredSkills: ['Emotion'],
+  requiredSkills: ['Nothing'],
+  preferredSkills: ['Nothing'],
   description: 'Test Job',
   posted: +new Date(),
   hyperlink: 'hire.listee.com',

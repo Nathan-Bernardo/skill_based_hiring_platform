@@ -7,7 +7,6 @@ export const SET_CURRENT_JOBLIST = 'SET_CURRENT_JOBLIST';
 export const ADD_JOBLIST = 'ADD_JOBLIST';
 export const UPDATE_JOBLIST = 'UPDATE_JOBLIST';
 export const DELETE_JOBLIST = 'DELETE_JOBLIST';
-export const MOVE_TO_ARCHIVE = 'MOVE_TO_ARCHIVE';
 
 export type SetJobListsAction = {
   type: typeof SET_JOBLISTS;
@@ -46,12 +45,6 @@ export type DeleteJobListAction = {
   type: typeof DELETE_JOBLIST;
   parentJobListId: string;
   jobList: JobList;
-};
-
-export type MoveToArchive = {
-  type: typeof MOVE_TO_ARCHIVE;
-  parentJobListId: string;
-  job: Job;
 };
 
 export type JobListActionTypes = AddJobListAction | UpdateJobListAction | DeleteJobListAction;

@@ -3,7 +3,7 @@ import { lazy, LazyExoticComponent } from 'react';
 const Dashboard = lazy(() => import('../Components/HiringManagerDashboard/components/Dashboard'));
 const Login = lazy(() => import('../Components/HiringManagerLogin/components/Login'));
 const JobApplicants = lazy(() => import('../Components/HiringManagerDashboard/components/JobApplicants'));
-const Profile = lazy(() => import('../Components/Profile/components/Profile'));
+const BuildProfile = lazy(() => import('./../Components/CanidateAccount/BuildProfile'));
 
 export type Route = {
   path: string;
@@ -14,15 +14,15 @@ export type Route = {
 
 export const allAccessRoutes: Route[] = [
   {
-    path: '/login',
-    exact: true,
-    component: Login,
-    showHeader: true,
-  },
-  {
     path: '/',
     exact: true,
     component: Dashboard,
+    showHeader: true,
+  },
+  {
+    path: '/login',
+    exact: true,
+    component: Login,
     showHeader: true,
   },
   {
@@ -32,9 +32,9 @@ export const allAccessRoutes: Route[] = [
     showHeader: true,
   },
   {
-    path: '/profile',
+    path: '/signup',
     exact: true,
-    component: Profile,
+    component: BuildProfile,
     showHeader: true,
   },
 ];

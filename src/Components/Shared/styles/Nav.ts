@@ -6,10 +6,9 @@ export const navContainer = css([
   flexRow,
   spaceBetween,
   css`
-    background-color: ${LIGHT_BLUE};
-    color: ${WHITE};
-    min-height: 3em;
-    padding: 1em;
+    background-color: ${WHITE};
+    color: ${LIGHT_BLUE};
+    padding: 0.2em;
   `,
 ]);
 
@@ -17,7 +16,7 @@ export const navHeader = css([
   xxLargeFontSize,
   hoverPointer,
   css`
-    color: ${WHITE};
+    color: ${LIGHT_BLUE};
     text-decoration: none;
   `,
 ]);

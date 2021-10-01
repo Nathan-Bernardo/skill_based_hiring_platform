@@ -1,4 +1,5 @@
-import { Dispatch, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { SET_JOBS } from '../Components/HiringManagerDashboard/actions/jobActions';
 import {
   SET_APPLICANTS_COUNT,
@@ -10,39 +11,40 @@ import { SetInitialAction } from '../Components/Shared/action';
 import { testJobLists, testJobs } from '../constants/testData';
 import { getTopJobListId } from './getTopJobListId';
 
-export const setData = <SetInitialAction>(data: SetInitialAction[], dispatch: Dispatch<SetInitialAction>): void => {
+export const setData = <T>(data: T[]): void => {
+  const dispatch = useDispatch();
   useEffect(() => {
     data.forEach((dataDispatch) => {
-      dispatch(dataDispatch);
+      dispatch<T>(dataDispatch);
     });
   }, [dispatch]);
 };
 
-export const initialize = (dispatch: Dispatch<SetInitialAction>): void => {
-  setData<SetInitialAction>(
-    [
-      {
-        type: SET_JOBLISTS,
-        jobLists: testJobLists,
-      },
-      {
-        type: SET_TOP_JOBLIST_ID,
-        jobLists: testJobLists,
-      },
-      {
-        type: SET_APPLICANTS_COUNT,
-        jobs: testJobs,
-        jobLists: testJobLists,
-      },
-      {
-        type: SET_CURRENT_JOBLIST,
-        jobListId: getTopJobListId(testJobLists),
-      },
-      {
-        type: SET_JOBS,
-        jobs: testJobs,
-      },
-    ],
-    dispatch,
-  );
-};
+export const initialize = (): void =>
+  setData<SetInitialAction>([
+    {
+      type: SET_JOBLISTS,
+      jobLists: testJobLists,
+    },
+    {
+      type: SET_TOP_JOBLIST_ID,
+      jobLists: testJobLists,
+    },
+    {
+      type: SET_APPLICANTS_COUNT,
+      jobs: testJobs,
+      jobLists: testJobLists,
+    },
+    {
+      type: SET_CURRENT_JOBLIST,
+      jobListId: getTopJobListId(testJobLists),
+    },
+    {
+      type: SET_JOBS,
+      jobs: testJobs,
+    },
+  ]);
+
+// export const fetchCandidateData = <T>(data: T{}): void => {
+//   const dispatch = useDispatch();
+// }

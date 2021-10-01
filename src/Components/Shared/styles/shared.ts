@@ -126,8 +126,8 @@ export const stretchWidth = css`
 `;
 
 export const coverViewport = css`
-  height: 100vh;
-  width: 100vw;
+  height: 50vh;
+  width: 70vw;
 `;
 
 export const tooltip = css([largeFontSize, centeredText]);
